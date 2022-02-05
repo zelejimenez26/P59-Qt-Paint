@@ -47,13 +47,13 @@ private slots:
 
 private:
     Ui::Principal *ui;
-    QImage *mImagen;        // Imagen sobre la que se va a dibujar
-    QPainter *mPainter;     // Painter de la imagen
-    QPoint mInicial;        // Punto incial para dibujar la línea
-    QPoint mFinal;          // Punto final para dibujar la línea
-    bool mPuedeDibujar;     // Determina si debe o no dibujar
-    int mAncho;             // Define el ancho del pincel
-    QColor mColor;          // Define el color del pincel
-    int mNumLineas;         // Cuenta el número de líneas
+    QImage *m_imagen;        // Imagen sobre la que se va a dibujar
+    QPainter *m_painter;     // Painter de la imagen
+    QPoint m_inicial;        // Punto incial para dibujar la línea
+    QPoint m_final;          // Punto final para dibujar la línea
+    bool m_puedeDibujar;     // Determina si debe o no dibujar
+    int m_ancho;             // Define el ancho del pincel
+    QColor m_color;          // Define el color del pincel
+    int m_numLineas;         // Cuenta el número de líneas
 };
 #endif // PRINCIPAL_H

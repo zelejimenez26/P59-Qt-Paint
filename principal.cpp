@@ -9,24 +9,24 @@ Principal::Principal(QWidget *parent)
 {
     ui->setupUi(this);
     // Instanciando la imagen (creando)
-    mImagen = new QImage(this->size(),QImage::Format_ARGB32_Premultiplied);
+    m_imagen = new QImage(this->size(),QImage::Format_ARGB32_Premultiplied);
     // Rellenar la imagen de color blanco
-    mImagen->fill(Qt::white);
+    m_imagen->fill(Qt::white);
     // Instanciar el Painter a partir de la imagen
-    mPainter = new QPainter(mImagen);
-    mPainter->setRenderHint(QPainter::Antialiasing);
+    m_painter = new QPainter(m_imagen);
+    m_painter->setRenderHint(QPainter::Antialiasing);
     // Inicializar otras variables
-    mPuedeDibujar = false;
-    mColor = Qt::black;
-    mAncho = DEFAULT_ANCHO;
-    mNumLineas = 0;
+    m_puedeDibujar = false;
+    m_color = Qt::black;
+    m_ancho = DEFAULT_ANCHO;
+    m_numLineas = 0;
 }
 
 Principal::~Principal()
 {
     delete ui;
-    delete mPainter;
-    delete mImagen;
+    delete m_painter;
+    delete m_imagen;
 }
 
 void Principal::paintEvent(QPaintEvent *event)
@@ -34,45 +34,45 @@ void Principal::paintEvent(QPaintEvent *event)
     // Crear el painter de la ventana principal
     QPainter painter(this);
     // Dibujar la imagen
-    painter.drawImage(0, 0, *mImagen);
+    painter.drawImage(0, 0, *m_imagen);
     // Aceptar el evento
     event->accept();
 }
 
 void Principal::mousePressEvent(QMouseEvent *event)
 {
-    mPuedeDibujar = true;
-    mInicial = event->pos();
+    m_puedeDibujar = true;
+    m_inicial = event->pos();
     event->accept();
 }
 
 void Principal::mouseMoveEvent(QMouseEvent *event)
 {
     // Validar si se puede dibujar
-    if ( !mPuedeDibujar ) {
+    if ( !m_puedeDibujar ) {
         event->accept();
         return;
     }
     // Capturar el punto donde se suelta el mouse
-    mFinal = event->pos();
+    m_final = event->pos();
     // Crear un pincel y establecer atributos
     QPen pincel;
-    pincel.setColor(mColor);
-    pincel.setWidth(mAncho);
+    pincel.setColor(m_color);
+    pincel.setWidth(m_ancho);
     // Dibujar una linea
-    mPainter->setPen(pincel);
-    mPainter->drawLine(mInicial, mFinal);
+    m_painter->setPen(pincel);
+    m_painter->drawLine(m_inicial, m_final);
     // Mostrar el número de líneas en la barra de estado
-    ui->statusbar->showMessage("Número de líneas: " + QString::number(++mNumLineas));
+    ui->statusbar->showMessage("Número de líneas: " + QString::number(++m_numLineas));
     // Actualizar la interfaz
     update();
     // actualizar el punto inicial
-    mInicial = mFinal;
+    m_inicial = m_final;
 }
 
 void Principal::mouseReleaseEvent(QMouseEvent *event)
 {
-    mPuedeDibujar = false;
+    m_puedeDibujar = false;
     // Aceptar el vento
     event->accept();
 
@@ -81,10 +81,10 @@ void Principal::mouseReleaseEvent(QMouseEvent *event)
 
 void Principal::on_actionAncho_triggered()
 {
-    mAncho = QInputDialog::getInt(this,
+    m_ancho = QInputDialog::getInt(this,
                                   "Ancho del pincel",
                                   "Ingrese el ancho del pincel de dibujo",
-                                  mAncho,
+                                  m_ancho,
                                   1, 100);
 }
 
@@ -95,15 +95,15 @@ void Principal::on_actionSalir_triggered()
 
 void Principal::on_actionColor_triggered()
 {
-    mColor = QColorDialog::getColor(mColor,
+    m_color = QColorDialog::getColor(m_color,
                                     this,
                                     "Color del pincel");
 }
 
 void Principal::on_actionNuevo_triggered()
 {
-    mImagen->fill(Qt::white);
-    mNumLineas = 0;
+    m_imagen->fill(Qt::white);
+    m_numLineas = 0;
     update();
 }
 
@@ -114,7 +114,7 @@ void Principal::on_actionGuardar_triggered()
                                                          QString(),
                                                          "Imágenes (*.png)");
     if ( !nombreArchivo.isEmpty() ){
-        if (mImagen->save(nombreArchivo))
+        if (m_imagen->save(nombreArchivo))
             QMessageBox::information(this,
                                      "Guardar imagen",
                                      "Archivo almacenado en: " + nombreArchivo);
