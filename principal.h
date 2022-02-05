@@ -43,7 +43,14 @@ private slots:
 
     void on_actionGuardar_triggered();
 
+
     void on_actionLineas_triggered();
+
+    void on_actionLibre_triggered();
+
+    void on_actionRect_nculos_triggered();
+
+    void on_actionCircunferencias_triggered();
 
 private:
     Ui::Principal *ui;
@@ -55,5 +62,10 @@ private:
     int m_ancho;             // Define el ancho del pincel
     QColor m_color;          // Define el color del pincel
     int m_numLineas;         // Cuenta el número de líneas
+
+    int m_opcion;            // Para definir las demas opciones de dibujo
+    bool m_vtOpcion=true;    // Verifica el momento de elegir una opcion
+
+
 };
 #endif // PRINCIPAL_H
