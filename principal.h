@@ -66,6 +66,5 @@ private:
     int m_opcion;            // Para definir las demas opciones de dibujo
     bool m_vtOpcion=true;    // Verifica el momento de elegir una opcion
 
-
 };
 #endif // PRINCIPAL_H

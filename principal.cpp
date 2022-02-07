@@ -42,11 +42,6 @@ void Principal::paintEvent(QPaintEvent *event)
 
 void Principal::mousePressEvent(QMouseEvent *event)
 {
-    /*
-    m_puedeDibujar = true;
-    m_inicial = event->pos();
-    event->accept();
-    */
 
     if(m_opcion==1){
         m_inicial=event->pos();
