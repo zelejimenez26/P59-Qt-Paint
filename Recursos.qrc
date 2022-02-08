@@ -10,5 +10,7 @@
         <file>Recursos/disquete.png</file>
         <file>Recursos/archivo-nuevo.png</file>
         <file>Recursos/lavado-en-seco.png</file>
+        <file>miPaint_en.qm</file>
+        <file>miPaint_ger.qm</file>
     </qresource>
 </RCC>
