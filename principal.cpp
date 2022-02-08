@@ -81,16 +81,20 @@ void Principal::mousePressEvent(QMouseEvent *event)
             m_inicial = event->pos();
         }else{
             m_final=event->pos();
-            //Para dibujar circulo
+            /*
+            //Para dibujar ovalos
             int ancho=m_final.x() - m_inicial.x();
             int alto=m_final.y() - m_inicial.y();
+            QRectF rectangulo(m_inicial.x(), m_inicial.y(), ancho, alto);
+            m_painter->drawEllipse(rectangulo);
+            */
             QPen pincel;
             pincel.setWidth(m_ancho);
             pincel.setColor(m_color);
             m_painter->setPen(pincel);
             //Dibujar circulo
-            QRectF rectangulo(m_inicial.x(), m_inicial.y(), ancho, alto);
-            m_painter->drawEllipse(rectangulo);
+            float r = sqrt(pow((m_final.x()-m_inicial.x()),2)+pow((m_final.y()-m_inicial.y()),2));
+            m_painter->drawEllipse(m_inicial.x()-r, m_inicial.y()-r, r*2, r*2);
             //Actualizar la interfaz
             update();
         }

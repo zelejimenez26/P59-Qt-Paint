@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     idiomas << "Español"<<"Ingles"<<"German";
     QString idiomaSeleccionado = QInputDialog::getItem(NULL,
                                                        "Idioma",
-                                                       "Seleccione un idioma",
+                                                       "Seleccione un idioma para iniciar",
                                                        idiomas);
     // Dependiendo del idioma seleccionado, carga el archivo de traducción
     if (idiomaSeleccionado == "Ingles"){

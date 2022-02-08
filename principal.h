@@ -12,6 +12,7 @@
 #include <QColorDialog>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <math.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Principal; }
